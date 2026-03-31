@@ -17,7 +17,7 @@
 
   --accent:       oklch(30%   0.095 60);
   --accent-hover: oklch(22%   0.090 60);
-  --accent-pale:  #E3DACC;
+  --accent-pale:  #F3F0E7;
   --accent-mid:   oklch(90%   0.030 65);
 
   --font-serif:   'EB Garamond', Georgia, 'Noto Serif SC', 'Source Han Serif CN', serif;
@@ -85,12 +85,12 @@ a:hover { color: var(--accent-hover); }
   height: 54px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 12px;
 }
 
 .site-logo {
   font-family: var(--font-sans);
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 700;
   letter-spacing: 0.5px;
   color: var(--text);
@@ -99,12 +99,13 @@ a:hover { color: var(--accent-hover); }
 .site-logo:hover { color: var(--text); opacity: 0.65; }
 .site-logo span  { color: var(--accent); font-weight: 700; }
 
-.nav-tag {
+.nav-desc {
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 500;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
   color: var(--text-ghost);
+  margin-top: 8px;
 }
 
 /* ============================================================
