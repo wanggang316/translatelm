@@ -20,7 +20,7 @@
   --accent-pale:  #E3DACC;
   --accent-mid:   oklch(90%   0.030 65);
 
-  --font-serif:   'Cormorant Garamond', Georgia, 'Noto Serif SC', STSong, serif;
+  --font-serif:   'EB Garamond', Georgia, 'Noto Serif SC', 'Source Han Serif CN', serif;
   --font-sans:    'Plus Jakarta Sans', -apple-system, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
   --font-body:    'Plus Jakarta Sans', -apple-system, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
   --font-mono:    'JetBrains Mono', 'Cascadia Code', monospace;
@@ -360,8 +360,8 @@ a:hover { color: var(--accent-hover); }
   padding: 32px 0 100px;
   max-width: var(--prose-w);
   font-family: var(--font-serif);
-  font-size: 19px;
-  line-height: 1.85;
+  font-size: 18px;
+  line-height: 1.8;
 }
 
 .prose > *:first-child { margin-top: 0; }
