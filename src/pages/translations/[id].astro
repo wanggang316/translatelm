@@ -1,0 +1,90 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const translations = await getCollection('translations');
+  return translations.map((entry) => ({
+    params: { id: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString('zh-CN', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+---
+
+<BaseLayout title={entry.data.title} description={`${entry.data.title} — TranslateLM 译文`}>
+  <div class="container">
+    <div class="detail-back">
+      <a href="/" class="back-link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        返回列表
+      </a>
+    </div>
+
+    <header class="detail-header">
+      <div class="detail-meta">
+        <span class="detail-date">{formatDate(entry.data.date)}</span>
+        {entry.data.source && (
+          <>
+            <span class="detail-meta-sep"></span>
+            <span class="detail-source">{entry.data.source}</span>
+          </>
+        )}
+        {entry.data.author && (
+          <>
+            <span class="detail-meta-sep"></span>
+            <span class="detail-source">{entry.data.author}</span>
+          </>
+        )}
+      </div>
+
+      <h1 class="detail-title">{entry.data.title}</h1>
+
+      <div class="detail-actions">
+        {entry.data.originalUrl ? (
+          <a
+            href={entry.data.originalUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-original-lg"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+              <polyline points="15 3 21 3 21 9"/>
+              <line x1="10" y1="14" x2="21" y2="3"/>
+            </svg>
+            查看原文
+            {entry.data.originalTitle && (
+              <span style="opacity:0.55;font-weight:400;font-size:12px">· {entry.data.originalTitle}</span>
+            )}
+          </a>
+        ) : (
+          <span class="btn-original-lg btn-original-disabled">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+              <polyline points="15 3 21 3 21 9"/>
+              <line x1="10" y1="14" x2="21" y2="3"/>
+            </svg>
+            暂无原文链接
+          </span>
+        )}
+      </div>
+    </header>
+
+    <article class="prose">
+      <Content />
+    </article>
+  </div>
+</BaseLayout>
