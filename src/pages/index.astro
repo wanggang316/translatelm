@@ -20,16 +20,17 @@ function formatDate(date: Date) {
   <div class="container">
     <section class="article-list">
       <div class="article-list-header">
-        <span class="list-label">全部译文</span>
-        <span class="count-badge">{sorted.length} 篇</span>
+        <span class="list-label">Articles</span>
+        <div class="list-rule"></div>
+        <span class="count-badge">{sorted.length}</span>
       </div>
 
       {sorted.length === 0 ? (
         <div class="empty-state">
-          <div class="empty-state-icon">📄</div>
+          <div class="empty-state-icon">—</div>
           <p class="empty-title">暂无译文</p>
           <p class="empty-desc">
-            请将 Markdown 文件放入 <code>src/content/translations/</code> 目录
+            将 Markdown 文件放入 <code>src/content/translations/</code> 目录即可
           </p>
         </div>
       ) : (
@@ -44,33 +45,31 @@ function formatDate(date: Date) {
                 {entry.data.source && (
                   <span class="article-source">{entry.data.source}</span>
                 )}
+                {entry.data.originalUrl ? (
+                  <a
+                    href={entry.data.originalUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn-original"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                      <polyline points="15 3 21 3 21 9"/>
+                      <line x1="10" y1="14" x2="21" y2="3"/>
+                    </svg>
+                    原文
+                  </a>
+                ) : (
+                  <span class="btn-original btn-original-disabled">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                      <polyline points="15 3 原文 3 21 9"/>
+                      <line x1="10" y1="14" x2="21" y2="3"/>
+                    </svg>
+                    原文
+                  </span>
+                )}
               </div>
-            </div>
-            <div class="article-card-right">
-              {entry.data.originalUrl ? (
-                <a
-                  href={entry.data.originalUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="btn-original"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                    <polyline points="15 3 21 3 21 9"/>
-                    <line x1="10" y1="14" x2="21" y2="3"/>
-                  </svg>
-                  原文
-                </a>
-              ) : (
-                <span class="btn-original btn-original-disabled">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                    <polyline points="15 3 21 3 21 9"/>
-                    <line x1="10" y1="14" x2="21" y2="3"/>
-                  </svg>
-                  原文
-                </span>
-              )}
             </div>
           </article>
         ))
