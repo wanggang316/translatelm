@@ -1,6 +1,27 @@
 # translatelm
 
-Astro 静态站点，已配置为通过 GitHub Actions 自动发布到 GitHub Pages。
+基于 Astro 的静态 blog 站点, 内容为 AI 领域优秀文章翻译，基于 [article-translate](https://github.com/wanggang316/skills/tree/main/article-translate)  Skill 的生成中文翻译结果。
+
+
+## article-translate
+
+[article-translate](https://github.com/wanggang316/skills/tree/main/article-translate) 是一个翻译的 Skill，
+
+### 安装
+
+只需要对你的 Agent 说:
+
+```
+帮我安装 https://github.com/wanggang316/skills.git 下的 article-translate 这个 Skill
+```
+
+### 使用
+
+对对话框内对你的 Agent 说：
+
+```
+翻译 https://xxxxx
+```
 
 ## 本地开发
 
