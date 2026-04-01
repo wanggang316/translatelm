@@ -12,6 +12,9 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
+const baseUrl = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
 
 function formatDate(date: Date) {
   const y = date.getFullYear();
@@ -24,7 +27,7 @@ function formatDate(date: Date) {
 <BaseLayout title={entry.data.title} description={`${entry.data.title} — TranslateLM`}>
   <div class="container">
     <div class="detail-back">
-      <a href="/" class="back-link">
+      <a href={baseUrl} class="back-link">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="15 18 9 12 15 6"/>
         </svg>
