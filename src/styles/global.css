@@ -504,6 +504,14 @@ a:hover { color: var(--accent-hover); }
   font-size: 11px;
   color: var(--text-ghost);
 }
+.footer-link {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.footer-link:hover {
+  color: var(--text-main);
+}
 
 /* ============================================================
    Empty state
