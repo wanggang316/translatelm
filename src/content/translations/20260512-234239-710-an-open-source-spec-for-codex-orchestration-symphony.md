@@ -98,7 +98,7 @@ Symphony 在大型 monorepo（比如 OpenAI 这种）中也尤其闪亮，因为
 
 #### Markdown
 
-```snippet
+````snippet
 # Symphony Service Specification
 
 Status: Draft v1 (language-agnostic)
@@ -1466,7 +1466,7 @@ If implemented:
 
 - Treat them as observability-only output.
 - Do not make orchestrator logic depend on humanized strings.
-```
+````
 
 参考实现是用 Elixir 写的——当代码的边际成本几乎为零时，你终于可以根据语言自身的长处来挑选它，比如 Elixir 的并发能力——但核心思想可以用一份简单的 Markdown 文档表达出来。我们鼓励你把这份规范丢给你最爱的编码 agent，让它去实现自己的版本。
 
