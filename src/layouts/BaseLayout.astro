@@ -24,7 +24,7 @@ const year = new Date().getFullYear();
     <meta name="description" content={description} />
     <meta name="theme-color" content="#f5f0e2" />
     <title>{fullTitle}</title>
-    <link rel="icon" type="image/svg+xml" href={`${baseUrl}favicon.svg`} />
+    <link rel="alternate" type="application/rss+xml" title="TranslateLM" href={`${baseUrl}rss.xml`} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -60,6 +60,7 @@ const year = new Date().getFullYear();
           </div>
           <nav aria-label="相关链接">
             <ul class="footer-links" role="list">
+              <li><a href={`${baseUrl}rss.xml`}>RSS</a></li>
               <li>
                 <a
                   href="https://github.com/wanggang316/skills/tree/main/article-translate"
