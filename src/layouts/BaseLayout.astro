@@ -13,6 +13,11 @@ const fullTitle = title === 'TranslateLM' ? title : `${title} — TranslateLM`;
 const baseUrl = import.meta.env.BASE_URL.endsWith('/')
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
+const year = new Date().getFullYear();
+
+// Seigaiha rows: front rows align on the column, back rows offset by half.
+const frontXs = Array.from({ length: 40 }, (_, i) => -160 + i * 80);
+const backXs = Array.from({ length: 39 }, (_, i) => -120 + i * 80);
 ---
 
 <!doctype html>
@@ -21,24 +26,33 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <meta name="theme-color" content="#f5f0e2" />
     <title>{fullTitle}</title>
     <link rel="icon" type="image/svg+xml" href={`${baseUrl}favicon.svg`} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Noto+Serif+SC:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href={`${baseUrl}global.css`} />
   </head>
   <body>
     <header class="site-header">
-      <div class="site-header-inner">
-        <a href={baseUrl} class="site-logo">
-          Translate<span>LM</span>
+      <nav class="container nav" aria-label="Main">
+        <a href={baseUrl} class="logo" aria-label="TranslateLM — home">
+          <!-- a single seigaiha scallop: concentric arcs, cut at the widest point -->
+          <svg class="logo-mark" viewBox="0 0 40 22" aria-hidden="true" focusable="false">
+            <path d="M0 22 A20 20 0 0 1 40 22 Z" class="m-deep"></path>
+            <path d="M4 22 A16 16 0 0 1 36 22 Z" class="m-teal"></path>
+            <path d="M8 22 A12 12 0 0 1 32 22 Z" class="m-deep"></path>
+            <path d="M12 22 A8 8 0 0 1 28 22 Z" class="m-pale"></path>
+            <path d="M16 22 A4 4 0 0 1 24 22 Z" class="m-deep"></path>
+          </svg>
+          <span class="logo-text">Translate<span class="initial">LM</span></span>
         </a>
         <span class="nav-desc">AI 领域优质文章翻译</span>
-      </div>
+      </nav>
     </header>
 
     <main>
@@ -46,20 +60,68 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
     </main>
 
     <footer class="site-footer">
-      <div class="site-footer-inner">
-        <span class="footer-text">TranslateLM</span>
-        <span class="footer-text">
-          Translate powered by
-          <a
-            class="footer-link"
-            href="https://github.com/wanggang316/skills/tree/main/article-translate"
-            target="_blank"
-            rel="noreferrer"
-          >
-            article-translate
-          </a>
-          skill.
-        </span>
+      <svg
+        class="seigaiha is-animated footer-waves"
+        viewBox="0 0 2880 80"
+        style="--seigaiha-col: 80px"
+        preserveAspectRatio="xMidYMax slice"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <defs>
+          <g id="scallop">
+            <circle r="40" class="deep"></circle>
+            <circle r="38.5" class="teal"></circle>
+            <circle r="33" class="deep"></circle>
+            <circle r="32.2" class="cream"></circle>
+            <circle r="26" class="deep"></circle>
+            <circle r="25.2" class="teal"></circle>
+            <circle r="22" class="deep"></circle>
+            <circle r="21.2" class="pale"></circle>
+            <circle r="18" class="deep"></circle>
+            <circle r="17.2" class="teal"></circle>
+            <circle r="14" class="deep"></circle>
+            <circle r="13.2" class="pale"></circle>
+            <circle r="10" class="deep"></circle>
+            <circle r="9.2" class="teal"></circle>
+            <circle r="6" class="deep"></circle>
+            <circle r="5.2" class="pale"></circle>
+            <circle r="2.6" class="teal"></circle>
+          </g>
+        </defs>
+        <g class="row row-front">
+          {frontXs.map((x) => <use href="#scallop" x={x} y="40"></use>)}
+        </g>
+        <g class="row row-back">
+          {backXs.map((x) => <use href="#scallop" x={x} y="60"></use>)}
+        </g>
+        <g class="row row-front">
+          {frontXs.map((x) => <use href="#scallop" x={x} y="80"></use>)}
+        </g>
+      </svg>
+      <div class="footer-body">
+        <div class="container footer-grid">
+          <div class="footer-about">
+            <p class="footer-name">TranslateLM</p>
+            <p class="footer-tagline">AI 领域优质文章翻译，附原文链接，便于对照阅读。</p>
+          </div>
+          <nav aria-label="相关链接">
+            <ul class="footer-links" role="list">
+              <li>
+                <a
+                  href="https://github.com/wanggang316/skills/tree/main/article-translate"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  article-translate<span aria-hidden="true"> ↗</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="container footer-meta">
+          <p>© {year} TranslateLM · Powered by <a href="https://astro.build" rel="noopener">Astro</a></p>
+        </div>
       </div>
     </footer>
   </body>

@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { readingTimeMinutes } from '../utils/reading-time';
 
 const allTranslations = await getCollection('translations');
 const sorted = allTranslations.sort(
@@ -21,34 +22,28 @@ function formatDate(date: Date) {
 
 <BaseLayout>
   <div class="container">
-    <section class="article-list">
-      <div class="article-list-header">
-        <span class="list-label">Articles</span>
-        <div class="list-rule"></div>
-        <span class="count-badge">{sorted.length}</span>
-      </div>
+    <section class="blog-index">
+      <header class="page-header">
+        <p class="eyebrow">Translations</p>
+        <h1 class="page-title">译作精选</h1>
+        <p class="intro">AI 领域优质文章的中文翻译，附原文链接，便于对照阅读。</p>
+      </header>
 
       {sorted.length === 0 ? (
-        <div class="empty-state">
-          <div class="empty-state-icon">—</div>
-          <p class="empty-title">暂无译文</p>
-          <p class="empty-desc">
-            将 Markdown 文件放入 <code>src/content/translations/</code> 目录即可
-          </p>
-        </div>
+        <p class="empty">
+          暂无译文 —— 将 Markdown 文件放入 <code>src/content/translations/</code> 即可。
+        </p>
       ) : (
-        sorted.map((entry) => (
-          <article class="article-card">
-            <div class="article-card-left">
-              <a href={`${baseUrl}translations/${entry.id}/`} class="article-card-title">
-                {entry.data.title}
-              </a>
-              <div class="article-card-meta">
-                <span class="article-date">{formatDate(entry.data.date)}</span>
-                {entry.data.source && (
-                  <span class="article-source">{entry.data.source}</span>
-                )}
-                {entry.data.originalUrl ? (
+        <div class="post-list">
+          {sorted.map((entry) => (
+            <article class="post-card">
+              <p class="meta">
+                <time datetime={entry.data.date.toISOString()}>
+                  {formatDate(entry.data.date)}
+                </time>
+                <span aria-hidden="true">·</span>
+                <span>{readingTimeMinutes(entry.body ?? '')} 分钟阅读</span>
+                {entry.data.originalUrl && (
                   <a
                     href={entry.data.originalUrl}
                     target="_blank"
@@ -56,26 +51,35 @@ function formatDate(date: Date) {
                     class="btn-original"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                      <polyline points="15 3 21 3 21 9"/>
-                      <line x1="10" y1="14" x2="21" y2="3"/>
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
                     </svg>
                     原文
                   </a>
-                ) : (
-                  <span class="btn-original btn-original-disabled">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                      <polyline points="15 3 原文 3 21 9"/>
-                      <line x1="10" y1="14" x2="21" y2="3"/>
-                    </svg>
-                    原文
-                  </span>
                 )}
-              </div>
-            </div>
-          </article>
-        ))
+              </p>
+              {entry.data.source && (
+                <p class="badges">
+                  <span class="badge">{entry.data.source}</span>
+                </p>
+              )}
+              <h2 class="title">
+                <a href={`${baseUrl}translations/${entry.id}/`}>{entry.data.title}</a>
+              </h2>
+              {entry.data.originalTitle && (
+                <p class="description">{entry.data.originalTitle}</p>
+              )}
+              {entry.data.tags.length > 0 && (
+                <ul class="tags" role="list">
+                  {entry.data.tags.map((tag) => (
+                    <li class="tag">{tag}</li>
+                  ))}
+                </ul>
+              )}
+            </article>
+          ))}
+        </div>
       )}
     </section>
   </div>

@@ -11,6 +11,7 @@ const translations = defineCollection({
     originalTitle: z.string().optional(),
     author: z.string().optional(),
     source: z.string().optional(),
+    tags: z.array(z.string()).default([]),
   }),
 });
 

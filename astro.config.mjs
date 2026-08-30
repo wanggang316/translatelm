@@ -21,4 +21,11 @@ const base = (() => {
 export default defineConfig({
   site,
   base,
+  markdown: {
+    shikiConfig: {
+      // light theme matching the cream/teal paper aesthetic (as on bhugo.dev)
+      theme: 'vitesse-light',
+      wrap: false,
+    },
+  },
 });
