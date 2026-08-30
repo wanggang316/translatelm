@@ -171,6 +171,25 @@ a:hover {
   color: var(--color-text);
 }
 
+.nav-rss {
+  display: inline-flex;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: color 0.15s, background-color 0.15s;
+}
+
+.nav-rss svg {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.nav-rss:hover {
+  color: var(--color-accent-strong);
+  background: color-mix(in srgb, var(--color-pale) 60%, transparent);
+}
+
 .logo-mark {
   width: 2rem;
   height: auto;

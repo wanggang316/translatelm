@@ -44,6 +44,13 @@ const year = new Date().getFullYear();
           </svg>
           <span class="logo-text">Translate<span class="initial">LM</span></span>
         </a>
+        <a href={`${baseUrl}rss.xml`} class="nav-rss" aria-label="RSS 订阅">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false">
+            <path d="M4 11a9 9 0 0 1 9 9"></path>
+            <path d="M4 4a16 16 0 0 1 16 16"></path>
+            <circle cx="5" cy="19" r="1.6" fill="currentColor" stroke="none"></circle>
+          </svg>
+        </a>
       </nav>
     </header>
 
@@ -60,7 +67,6 @@ const year = new Date().getFullYear();
           </div>
           <nav aria-label="相关链接">
             <ul class="footer-links" role="list">
-              <li><a href={`${baseUrl}rss.xml`}>RSS</a></li>
               <li>
                 <a
                   href="https://github.com/wanggang316/skills/tree/main/article-translate"
