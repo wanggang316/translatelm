@@ -211,19 +211,19 @@ a:hover {
   100% { transform: scale(1); }
 }
 
-.m-deep { fill: var(--color-teal-deep); }
-.m-teal { fill: var(--color-teal); }
-.m-pale { fill: var(--color-cream); }
+.logo-mark path {
+  fill: none;
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.mk-a { stroke: var(--color-teal-ink); }
+.mk-b { stroke: var(--color-teal); }
 
 .logo .initial {
   color: var(--color-accent-strong);
 }
 
-.nav-desc {
-  color: var(--color-text-muted);
-  font-size: 0.9rem;
-  text-align: right;
-}
 
 /* ============================================================
    Blog index
@@ -247,8 +247,8 @@ a:hover {
 }
 
 .page-title {
-  font-size: clamp(2.2rem, 1.6rem + 2.5vw, 3.25rem);
-  line-height: 1.1;
+  font-size: clamp(1.5rem, 1.25rem + 1vw, 2rem);
+  line-height: 1.2;
   letter-spacing: -0.01em;
   margin-bottom: 1rem;
 }
@@ -309,8 +309,9 @@ a:hover {
 }
 
 .post-card .title {
-  font-size: clamp(1.3rem, 1.1rem + 0.8vw, 1.7rem);
-  line-height: 1.2;
+  font-weight: 500;
+  font-size: clamp(1.2rem, 1.05rem + 0.7vw, 1.5rem);
+  line-height: 1.25;
   margin-bottom: 0.5rem;
 }
 
@@ -538,40 +539,11 @@ a:hover {
 }
 
 /* ============================================================
-   Footer — seigaiha waves
+   Footer
    ============================================================ */
 .site-footer {
   color: var(--color-cream);
   margin-top: clamp(4rem, 10vw, 8rem);
-}
-
-.seigaiha {
-  width: 100%;
-  height: var(--seigaiha-height, 7.5rem);
-  display: block;
-}
-
-.seigaiha .deep { fill: var(--w-deep, #4a8e96); }
-.seigaiha .teal { fill: var(--w-teal, #86bdb9); }
-.seigaiha .pale { fill: var(--w-pale, #d0e5dc); }
-.seigaiha .cream { fill: var(--w-cream, #f5f0e2); }
-
-.footer-waves {
-  --w-deep: var(--color-teal-ink);
-  --w-teal: var(--color-teal-deep);
-  --w-pale: var(--color-teal);
-  --w-cream: var(--color-pale);
-  --seigaiha-height: 6rem;
-}
-
-.seigaiha.is-animated .row {
-  will-change: transform;
-  animation: drift var(--seigaiha-drift, 20s) linear infinite;
-}
-
-@keyframes drift {
-  from { transform: translateX(0); }
-  to { transform: translateX(calc(-1 * var(--seigaiha-col, 80px))); }
 }
 
 .footer-body {
@@ -647,9 +619,6 @@ a:hover {
     font-size: 1.1rem;
   }
 
-  .nav-desc {
-    font-size: 0.8rem;
-  }
 }
 
 /* ============================================================

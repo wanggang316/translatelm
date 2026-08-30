@@ -6,7 +6,7 @@ interface Props {
 
 const {
   title = 'TranslateLM',
-  description = '精选 AI 领域优质文章翻译',
+  description = 'AI 领域优质文章翻译',
 } = Astro.props;
 
 const fullTitle = title === 'TranslateLM' ? title : `${title} — TranslateLM`;
@@ -14,10 +14,6 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
 const year = new Date().getFullYear();
-
-// Seigaiha rows: front rows align on the column, back rows offset by half.
-const frontXs = Array.from({ length: 40 }, (_, i) => -160 + i * 80);
-const backXs = Array.from({ length: 39 }, (_, i) => -120 + i * 80);
 ---
 
 <!doctype html>
@@ -41,17 +37,13 @@ const backXs = Array.from({ length: 39 }, (_, i) => -120 + i * 80);
     <header class="site-header">
       <nav class="container nav" aria-label="Main">
         <a href={baseUrl} class="logo" aria-label="TranslateLM — home">
-          <!-- a single seigaiha scallop: concentric arcs, cut at the widest point -->
-          <svg class="logo-mark" viewBox="0 0 40 22" aria-hidden="true" focusable="false">
-            <path d="M0 22 A20 20 0 0 1 40 22 Z" class="m-deep"></path>
-            <path d="M4 22 A16 16 0 0 1 36 22 Z" class="m-teal"></path>
-            <path d="M8 22 A12 12 0 0 1 32 22 Z" class="m-deep"></path>
-            <path d="M12 22 A8 8 0 0 1 28 22 Z" class="m-pale"></path>
-            <path d="M16 22 A4 4 0 0 1 24 22 Z" class="m-deep"></path>
+          <!-- two interweaving arcs: source text and translation crossing over -->
+          <svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+            <path d="M7 11 C 17 11, 23 29, 33 29" class="mk-a"></path>
+            <path d="M7 29 C 17 29, 23 11, 33 11" class="mk-b"></path>
           </svg>
           <span class="logo-text">Translate<span class="initial">LM</span></span>
         </a>
-        <span class="nav-desc">AI 领域优质文章翻译</span>
       </nav>
     </header>
 
@@ -60,50 +52,11 @@ const backXs = Array.from({ length: 39 }, (_, i) => -120 + i * 80);
     </main>
 
     <footer class="site-footer">
-      <svg
-        class="seigaiha is-animated footer-waves"
-        viewBox="0 0 2880 80"
-        style="--seigaiha-col: 80px"
-        preserveAspectRatio="xMidYMax slice"
-        aria-hidden="true"
-        focusable="false"
-      >
-        <defs>
-          <g id="scallop">
-            <circle r="40" class="deep"></circle>
-            <circle r="38.5" class="teal"></circle>
-            <circle r="33" class="deep"></circle>
-            <circle r="32.2" class="cream"></circle>
-            <circle r="26" class="deep"></circle>
-            <circle r="25.2" class="teal"></circle>
-            <circle r="22" class="deep"></circle>
-            <circle r="21.2" class="pale"></circle>
-            <circle r="18" class="deep"></circle>
-            <circle r="17.2" class="teal"></circle>
-            <circle r="14" class="deep"></circle>
-            <circle r="13.2" class="pale"></circle>
-            <circle r="10" class="deep"></circle>
-            <circle r="9.2" class="teal"></circle>
-            <circle r="6" class="deep"></circle>
-            <circle r="5.2" class="pale"></circle>
-            <circle r="2.6" class="teal"></circle>
-          </g>
-        </defs>
-        <g class="row row-front">
-          {frontXs.map((x) => <use href="#scallop" x={x} y="40"></use>)}
-        </g>
-        <g class="row row-back">
-          {backXs.map((x) => <use href="#scallop" x={x} y="60"></use>)}
-        </g>
-        <g class="row row-front">
-          {frontXs.map((x) => <use href="#scallop" x={x} y="80"></use>)}
-        </g>
-      </svg>
       <div class="footer-body">
         <div class="container footer-grid">
           <div class="footer-about">
             <p class="footer-name">TranslateLM</p>
-            <p class="footer-tagline">AI 领域优质文章翻译，附原文链接，便于对照阅读。</p>
+            <p class="footer-tagline">AI 领域优质文章翻译</p>
           </div>
           <nav aria-label="相关链接">
             <ul class="footer-links" role="list">

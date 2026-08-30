@@ -1,9 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
-  <rect width="40" height="40" rx="9" fill="#f5f0e2"/>
-  <!-- a single seigaiha scallop: concentric arcs, cut at the widest point -->
-  <path d="M4 34 A16 16 0 0 1 36 34 Z" fill="#4a8e96"/>
-  <path d="M7.2 34 A12.8 12.8 0 0 1 32.8 34 Z" fill="#86bdb9"/>
-  <path d="M10.4 34 A9.6 9.6 0 0 1 29.6 34 Z" fill="#4a8e96"/>
-  <path d="M13.6 34 A6.4 6.4 0 0 1 26.4 34 Z" fill="#d0e5dc"/>
-  <path d="M16.8 34 A3.2 3.2 0 0 1 23.2 34 Z" fill="#4a8e96"/>
+  <rect width="40" height="40" rx="9" fill="#2e6168"/>
+  <!-- two interweaving arcs: source text and translation crossing over -->
+  <path d="M7 11 C 17 11, 23 29, 33 29" fill="none" stroke="#f5f0e2" stroke-width="4" stroke-linecap="round"/>
+  <path d="M7 29 C 17 29, 23 11, 33 11" fill="none" stroke="#86bdb9" stroke-width="4" stroke-linecap="round"/>
 </svg>
