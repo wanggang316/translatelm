@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
   <rect width="40" height="40" rx="9" fill="#2e6168"/>
-  <!-- two interweaving arcs: source text and translation crossing over -->
-  <path d="M7 11 C 17 11, 23 29, 33 29" fill="none" stroke="#f5f0e2" stroke-width="4" stroke-linecap="round"/>
-  <path d="M7 29 C 17 29, 23 11, 33 11" fill="none" stroke="#86bdb9" stroke-width="4" stroke-linecap="round"/>
+  <!-- two interweaving arcs, chunky strokes to stay legible at 16px -->
+  <path d="M8 11 C 17 11, 23 29, 32 29" fill="none" stroke="#f5f0e2" stroke-width="7" stroke-linecap="round"/>
+  <path d="M8 29 C 17 29, 23 11, 32 11" fill="none" stroke="#86bdb9" stroke-width="7" stroke-linecap="round"/>
 </svg>
