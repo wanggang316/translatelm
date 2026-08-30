@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
-  <rect width="40" height="40" rx="9" fill="#2e6168"/>
-  <text x="20" y="29" font-size="24" font-weight="700" text-anchor="middle"
-    font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC',sans-serif"
-    fill="#fffdf7">译</text>
+  <rect width="40" height="40" rx="9" fill="#f5f0e2"/>
+  <!-- the logo mark itself: two interweaving arcs, bold for small sizes -->
+  <path d="M8 11 C 17 11, 23 29, 32 29" fill="none" stroke="#2e6168" stroke-width="7" stroke-linecap="round"/>
+  <path d="M8 29 C 17 29, 23 11, 32 11" fill="none" stroke="#4a8e96" stroke-width="7" stroke-linecap="round"/>
 </svg>
