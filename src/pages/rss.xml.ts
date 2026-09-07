@@ -1,7 +1,7 @@
 import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
 import type { APIContext } from 'astro';
-import { byDateDesc } from '../utils/sort';
+import { byTranslatedDesc, translatedAt } from '../utils/translation';
 
 const baseUrl = import.meta.env.BASE_URL.endsWith('/')
   ? import.meta.env.BASE_URL
@@ -9,7 +9,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
 export async function GET(context: APIContext) {
   const translations = await getCollection('translations');
-  const sorted = translations.sort(byDateDesc);
+  const sorted = translations.sort(byTranslatedDesc);
 
   return rss({
     title: 'TranslateLM',
@@ -17,7 +17,7 @@ export async function GET(context: APIContext) {
     site: context.site ?? 'http://localhost:4321/',
     items: sorted.map((entry) => ({
       title: entry.data.title,
-      pubDate: entry.data.date,
+      pubDate: translatedAt(entry),
       description: entry.data.originalTitle,
       link: `${baseUrl}translations/${entry.id}/`,
       categories: entry.data.tags,

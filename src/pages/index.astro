@@ -2,21 +2,13 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { readingTimeMinutes } from '../utils/reading-time';
-import { byDateDesc } from '../utils/sort';
+import { byTranslatedDesc, formatDate, translatedAt } from '../utils/translation';
 
 const allTranslations = await getCollection('translations');
-const sorted = allTranslations.sort(byDateDesc);
+const sorted = allTranslations.sort(byTranslatedDesc);
 const baseUrl = import.meta.env.BASE_URL.endsWith('/')
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
-
-function formatDate(date: Date) {
-  return date.toLocaleDateString('zh-CN', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
-}
 ---
 
 <BaseLayout>
@@ -33,11 +25,13 @@ function formatDate(date: Date) {
         </p>
       ) : (
         <div class="post-list">
-          {sorted.map((entry) => (
+          {sorted.map((entry) => {
+            const published = translatedAt(entry);
+            return (
             <article class="post-card">
               <p class="meta">
-                <time datetime={entry.data.date.toISOString()}>
-                  {formatDate(entry.data.date)}
+                <time datetime={published.toISOString()}>
+                  {formatDate(published)}
                 </time>
                 <span aria-hidden="true">·</span>
                 <span>{readingTimeMinutes(entry.body ?? '')} 分钟阅读</span>
@@ -65,9 +59,20 @@ function formatDate(date: Date) {
               <h2 class="title">
                 <a href={`${baseUrl}translations/${entry.id}/`}>{entry.data.title}</a>
               </h2>
-              {entry.data.originalTitle && (
-                <p class="description">{entry.data.originalTitle}</p>
-              )}
+              <p class="description">
+                {entry.data.originalTitle && (
+                  <>
+                    <span>{entry.data.originalTitle}</span>
+                    <span aria-hidden="true"> · </span>
+                  </>
+                )}
+                <span>
+                  原文发布于{' '}
+                  <time datetime={entry.data.date.toISOString()}>
+                    {formatDate(entry.data.date)}
+                  </time>
+                </span>
+              </p>
               {entry.data.tags.length > 0 && (
                 <ul class="tags" role="list">
                   {entry.data.tags.map((tag) => (
@@ -76,7 +81,8 @@ function formatDate(date: Date) {
                 </ul>
               )}
             </article>
-          ))}
+            );
+          })}
         </div>
       )}
     </section>
