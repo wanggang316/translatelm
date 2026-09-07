@@ -1,6 +1,7 @@
 import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
 import type { APIContext } from 'astro';
+import { byDateDesc } from '../utils/sort';
 
 const baseUrl = import.meta.env.BASE_URL.endsWith('/')
   ? import.meta.env.BASE_URL
@@ -8,9 +9,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith('/')
 
 export async function GET(context: APIContext) {
   const translations = await getCollection('translations');
-  const sorted = translations.sort(
-    (a, b) => b.data.date.getTime() - a.data.date.getTime()
-  );
+  const sorted = translations.sort(byDateDesc);
 
   return rss({
     title: 'TranslateLM',
